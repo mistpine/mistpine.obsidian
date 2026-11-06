@@ -1,0 +1,485 @@
+/*
+ * Template for theme.css. `pnpm generate` replaces each {{token}} with a
+ * color from the mistpine spec:
+ *
+ *   {{bg1}}             palette key
+ *   {{syntax.comment}}  spec token (syntax, ui or terminal)
+ *   {{rgb:red}}         "r, g, b" for rgba() and Obsidian's *-rgb variables
+ *   {{mix:bg1:blue:15}} the spec's mix(): 15% blue over bg1, in OKLab
+ *   {{h:blue}} {{s:blue}} {{l:blue}}  HSL parts, for Obsidian's accent
+ *
+ * mistpine is dark only, so everything sits under .theme-dark and light mode
+ * keeps Obsidian's default colors.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Palette                                                             */
+/* ------------------------------------------------------------------ */
+
+.theme-dark {
+  color-scheme: dark;
+
+  /* Obsidian's gray ramp, darkest first. Surfaces are also set below,
+     because mistpine's panels step down (bg0) where Obsidian's step up. */
+  --color-base-00: {{bg1}};
+  --color-base-05: {{mix:bg1:bg2:50}};
+  --color-base-10: {{bg2}};
+  --color-base-20: {{bg3}};
+  --color-base-25: {{mix:bg3:bg4:50}};
+  --color-base-30: {{bg4}};
+  --color-base-35: {{mix:bg4:fg0:35}};
+  --color-base-40: {{fg0}};
+  --color-base-50: {{fg1}};
+  --color-base-60: {{mix:fg1:fg2:50}};
+  --color-base-70: {{fg2}};
+  --color-base-100: {{fg3}};
+
+  /* Tints that Obsidian mixes from black and white stay in the palette. */
+  --mono-0: {{bg0}};
+  --mono-100: {{fg3}};
+  --mono-rgb-0: {{rgb:bg0}};
+  --mono-rgb-100: {{rgb:fg3}};
+
+  --color-red: {{red}};
+  --color-orange: {{orange}};
+  --color-yellow: {{yellow}};
+  --color-green: {{green}};
+  --color-cyan: {{cyan}};
+  --color-blue: {{blue}};
+  --color-purple: {{purple}};
+  --color-pink: {{pink}};
+  --color-red-rgb: {{rgb:red}};
+  --color-orange-rgb: {{rgb:orange}};
+  --color-yellow-rgb: {{rgb:yellow}};
+  --color-green-rgb: {{rgb:green}};
+  --color-cyan-rgb: {{rgb:cyan}};
+  --color-blue-rgb: {{rgb:blue}};
+  --color-purple-rgb: {{rgb:purple}};
+  --color-pink-rgb: {{rgb:pink}};
+
+  /* The accent is the spec's blue. Obsidian's accent setting still wins:
+     it sets these three on the body element. */
+  --accent-h: {{h:ui.accent}};
+  --accent-s: {{s:ui.accent}}%;
+  --accent-l: {{l:ui.accent}}%;
+
+  /* ---------------------------------------------------------------- */
+  /* Surfaces: bg1 is the canvas, raised surfaces step up, panels down */
+  /* ---------------------------------------------------------------- */
+
+  --background-primary: {{ui.editorBg}};
+  --background-primary-alt: {{bg2}};
+  --background-secondary: {{ui.panelBg}};
+  --background-secondary-alt: {{bg2}};
+
+  --background-modifier-hover: {{bg3}};
+  --background-modifier-active-hover: {{mix:bg1:blue:15}};
+  --background-modifier-border: {{ui.border}};
+  --background-modifier-border-hover: {{mix:bg4:fg0:35}};
+  --background-modifier-border-focus: {{fg0}};
+  --background-modifier-form-field: {{bg2}};
+  --background-modifier-form-field-hover: {{bg2}};
+  --background-modifier-cover: rgba({{rgb:bg0}}, 0.6);
+  --background-modifier-box-shadow: rgba({{rgb:bg0}}, 0.3);
+  --background-modifier-error: {{ui.error}};
+  --background-modifier-error-hover: {{brightRed}};
+  --background-modifier-error-rgb: {{rgb:ui.error}};
+  --background-modifier-warning: {{ui.warning}};
+  --background-modifier-warning-hover: {{brightYellow}};
+  --background-modifier-success: {{ui.ok}};
+  --background-modifier-success-rgb: {{rgb:ui.ok}};
+  --background-modifier-message: rgba({{rgb:bg0}}, 0.9);
+
+  --interactive-normal: {{bg3}};
+  --interactive-hover: {{bg4}};
+  --interactive-accent: var(--color-accent);
+  --interactive-accent-hover: var(--color-accent-1);
+
+  /* ---------------------------------------------------------------- */
+  /* Text: fg0 is decoration only                                      */
+  /* ---------------------------------------------------------------- */
+
+  --text-normal: {{ui.editorFg}};
+  --text-muted: {{fg2}};
+  --text-faint: {{fg1}};
+  --text-on-accent: {{bg1}};
+  --text-on-accent-inverted: {{fg3}};
+  --text-accent: var(--color-accent);
+  --text-accent-hover: var(--color-accent-1);
+  --text-error: {{ui.error}};
+  --text-warning: {{ui.warning}};
+  --text-success: {{ui.ok}};
+  --text-selection: {{ui.selection}};
+  --text-highlight-bg: {{ui.searchBg}};
+  --text-highlight-bg-active: {{ui.curSearchBg}};
+  --caret-color: {{terminal.cursor}};
+
+  /* ---------------------------------------------------------------- */
+  /* Workspace                                                         */
+  /* ---------------------------------------------------------------- */
+
+  --titlebar-background: {{bg0}};
+  --titlebar-background-focused: {{bg0}};
+  --ribbon-background: {{bg0}};
+  --ribbon-background-collapsed: {{bg1}};
+  --tab-container-background: {{ui.tabInactiveBg}};
+  --tab-background-active: {{bg1}};
+  --tab-outline-color: {{ui.border}};
+  --tab-divider-color: {{ui.border}};
+  --divider-color: {{ui.border}};
+  --divider-color-hover: var(--interactive-accent);
+  --status-bar-background: {{ui.statusBg}};
+  --status-bar-border-color: {{ui.border}};
+  --status-bar-text-color: {{ui.statusFg}};
+
+  --menu-background: {{ui.pmenuBg}};
+  --menu-border-color: {{ui.border}};
+  --modal-background: {{bg1}};
+  --modal-border-color: {{ui.border}};
+  --prompt-background: {{ui.pmenuBg}};
+  --prompt-border-color: {{ui.border}};
+  --popover-background: {{bg0}};
+  --tooltip-background: {{bg2}};
+  --tooltip-color: {{fg3}};
+  --notice-background: {{bg2}};
+  --notice-color: {{fg3}};
+  --drag-ghost-background: rgba({{rgb:bg2}}, 0.9);
+  --drag-ghost-text-color: {{fg3}};
+
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: {{bg4}};
+  --scrollbar-active-thumb-bg: {{fg0}};
+
+  --icon-color: {{fg2}};
+  --icon-color-hover: {{fg3}};
+  --icon-color-active: var(--text-accent);
+  --icon-color-focused: {{fg3}};
+  --nav-item-background-hover: {{bg3}};
+  --nav-item-background-active: {{bg3}};
+  --indentation-guide-color: {{bg4}};
+  --indentation-guide-color-active: {{fg0}};
+
+  /* ---------------------------------------------------------------- */
+  /* Markdown                                                          */
+  /* ---------------------------------------------------------------- */
+
+  --h1-color: {{syntax.heading}};
+  --h2-color: {{syntax.heading}};
+  --h3-color: {{syntax.heading}};
+  --h4-color: {{syntax.heading}};
+  --h5-color: {{syntax.heading}};
+  --h6-color: {{syntax.heading}};
+  --inline-title-color: {{syntax.heading}};
+  --heading-formatting: {{fg1}};
+
+  --link-color: {{syntax.link}};
+  --link-color-hover: {{brightCyan}};
+  --link-decoration: underline;
+  --link-external-color: {{syntax.link}};
+  --link-external-color-hover: {{brightCyan}};
+  --link-unresolved-color: {{syntax.link}};
+  --link-unresolved-decoration-color: {{mix:bg1:cyan:40}};
+
+  --tag-color: {{blue}};
+  --tag-color-hover: {{brightBlue}};
+  /* 8% keeps blue tag text above 4.5:1. */
+  --tag-background: {{mix:bg1:blue:8}};
+  --tag-background-hover: {{mix:bg1:blue:15}};
+  --tag-border-color: {{mix:bg1:blue:30}};
+
+  --blockquote-border-color: var(--interactive-accent);
+  --hr-color: {{ui.border}};
+  --list-marker-color: {{fg1}};
+  --list-marker-color-hover: {{fg2}};
+  --checkbox-border-color: {{fg1}};
+  --checkbox-border-color-hover: {{fg2}};
+  --checkbox-marker-color: {{bg1}};
+  --checklist-done-color: {{fg1}};
+  --table-border-color: {{ui.border}};
+  --table-header-color: {{fg3}};
+  --table-row-background-hover: {{bg2}};
+  --table-selection: {{ui.selection}};
+  --table-selection-border-color: var(--interactive-accent);
+  --embed-border-start: 2px solid var(--interactive-accent);
+  --metadata-label-text-color: {{fg2}};
+  --metadata-input-text-color: {{fg3}};
+  --bases-table-header-color: {{fg2}};
+  --bases-table-group-background: {{bg2}};
+
+  /* Callouts by meaning: errors red, warnings yellow, hints cyan. */
+  --callout-default: {{blue}};
+  --callout-info: {{ui.info}};
+  --callout-todo: {{ui.info}};
+  --callout-summary: {{ui.hint}};
+  --callout-tip: {{ui.hint}};
+  --callout-important: {{ui.hint}};
+  --callout-success: {{ui.ok}};
+  --callout-question: {{orange}};
+  --callout-warning: {{ui.warning}};
+  --callout-fail: {{ui.error}};
+  --callout-error: {{ui.error}};
+  --callout-bug: {{ui.error}};
+  --callout-example: {{purple}};
+  --callout-quote: {{fg1}};
+
+  --graph-text: {{fg3}};
+  --graph-line: {{bg4}};
+  --graph-node: {{fg2}};
+  --graph-node-unresolved: {{fg0}};
+  --graph-node-focused: var(--text-accent);
+  --graph-node-tag: {{green}};
+  --graph-node-attachment: {{yellow}};
+
+  /* ---------------------------------------------------------------- */
+  /* Code                                                              */
+  /* ---------------------------------------------------------------- */
+
+  /* Code is recessed (bg0): every syntax color keeps 4.9:1 or more there,
+     where bg2 would drop keywords below 4.5:1. */
+  --code-background: {{bg0}};
+  --code-normal: {{syntax.variable}};
+  --code-comment: {{syntax.comment}};
+  --code-function: {{syntax.function}};
+  --code-important: {{syntax.escape}};
+  --code-keyword: {{syntax.keyword}};
+  --code-operator: {{syntax.operator}};
+  --code-property: {{syntax.property}};
+  --code-punctuation: {{syntax.punctuation}};
+  --code-string: {{syntax.string}};
+  --code-tag: {{syntax.tag}};
+  --code-value: {{syntax.number}};
+
+  /* Roles Obsidian has no variable for. */
+  --mistpine-code-type: {{syntax.type}};
+  --mistpine-code-builtin: {{syntax.builtin}};
+  --mistpine-code-parameter: {{syntax.parameter}};
+  --mistpine-code-attribute: {{syntax.attribute}};
+  --mistpine-code-namespace: {{syntax.namespace}};
+  --mistpine-code-regex: {{syntax.regex}};
+  --mistpine-code-macro: {{syntax.macro}};
+  --mistpine-code-link: {{syntax.link}};
+  --mistpine-code-inserted: {{ui.gitAdd}};
+  --mistpine-code-deleted: {{ui.gitDelete}};
+}
+
+/* Line numbers (source mode): Obsidian colors them with --text-faint. */
+.theme-dark .markdown-source-view.mod-cm6 .cm-gutters {
+  --text-faint: {{ui.lineNr}};
+}
+
+/* Callouts are recessed like code: an 8% tint over bg0 keeps every title
+   color above 4.5:1, where Obsidian's 10% over bg1 drops red to 4.2:1. */
+.theme-dark .callout {
+  background-color: color-mix(in oklab, var(--callout-color) 8%, var(--background-secondary));
+}
+
+/* Selected suggestions and menu items step up once more, to bg3. */
+.theme-dark .suggestion-item.is-selected,
+.theme-dark .menu-item.selected:not(.is-disabled):not(.is-label) {
+  background-color: {{ui.pmenuSel}};
+}
+
+/* Search matches: the current one is orange with dark text. */
+.theme-dark .search-result-file-matched-text,
+.theme-dark .markdown-rendered mark.is-flashing {
+  color: inherit;
+}
+
+.theme-dark .cm-s-obsidian .obsidian-search-match-highlight.is-active,
+.theme-dark .markdown-rendered .search-highlight > div.is-active {
+  background-color: {{ui.curSearchBg}};
+  color: {{bg1}};
+}
+
+/* ------------------------------------------------------------------ */
+/* Syntax: Reading view (Prism)                                        */
+/* ------------------------------------------------------------------ */
+
+.theme-dark :is(.token.comment, .token.prolog, .token.doctype, .token.cdata) {
+  color: var(--code-comment);
+  font-style: italic;
+}
+
+.theme-dark :is(.token.keyword, .token.atrule, .token.important) {
+  color: var(--code-keyword);
+}
+
+.theme-dark :is(.token.function, .token.function-variable) {
+  color: var(--code-function);
+  font-weight: bold;
+}
+
+.theme-dark :is(.token.method, .token.function.property-access) {
+  color: var(--code-function);
+  font-weight: normal;
+}
+
+.theme-dark :is(.token.string, .token.char, .token.attr-value, .token.template-string) {
+  color: var(--code-string);
+  font-style: italic;
+}
+
+/* Substitutions inside template strings are code, not string. */
+.theme-dark .token.template-string .token.interpolation {
+  font-style: normal;
+}
+
+.theme-dark :is(.token.entity, .token.escape) {
+  color: var(--code-important);
+  font-style: normal;
+}
+
+.theme-dark .token.regex {
+  color: var(--mistpine-code-regex);
+  font-style: normal;
+}
+
+.theme-dark :is(.token.number, .token.boolean, .token.constant, .token.symbol, .token.null) {
+  color: var(--code-value);
+}
+
+.theme-dark :is(.token.class-name, .token.selector, .token.table) {
+  color: var(--mistpine-code-type);
+}
+
+.theme-dark .token.attr-name {
+  color: var(--mistpine-code-attribute);
+}
+
+.theme-dark .token.builtin {
+  color: var(--mistpine-code-builtin);
+}
+
+.theme-dark .token.variable {
+  color: var(--code-normal);
+}
+
+.theme-dark .token.parameter {
+  color: var(--mistpine-code-parameter);
+}
+
+.theme-dark :is(.token.property, .token.property-access, .token.key) {
+  color: var(--code-property);
+}
+
+.theme-dark :is(.token.namespace, .token.module) {
+  color: var(--mistpine-code-namespace);
+}
+
+.theme-dark :is(.token.macro, .token.directive, .token.decorator, .token.annotation) {
+  color: var(--mistpine-code-macro);
+}
+
+.theme-dark .token.operator {
+  color: var(--code-operator);
+}
+
+.theme-dark :is(.token.punctuation, .token.interpolation-punctuation) {
+  color: var(--code-punctuation);
+  font-style: normal;
+}
+
+.theme-dark .token.tag {
+  color: var(--code-tag);
+}
+
+.theme-dark .token.url {
+  color: var(--mistpine-code-link);
+  text-decoration: underline;
+}
+
+.theme-dark .token.title {
+  color: {{syntax.heading}};
+  font-weight: bold;
+}
+
+.theme-dark .token.inserted {
+  color: var(--mistpine-code-inserted);
+}
+
+.theme-dark .token.deleted {
+  color: var(--mistpine-code-deleted);
+}
+
+.theme-dark .token.bold {
+  font-weight: bold;
+}
+
+.theme-dark .token.italic {
+  font-style: italic;
+}
+
+/* ------------------------------------------------------------------ */
+/* Syntax: code blocks in the editor (CodeMirror)                      */
+/* ------------------------------------------------------------------ */
+
+.theme-dark .HyperMD-codeblock .cm-comment {
+  color: var(--code-comment);
+  font-style: italic;
+}
+
+.theme-dark .HyperMD-codeblock .cm-keyword {
+  color: var(--code-keyword);
+}
+
+/* CodeMirror's legacy modes mark every definition `cm-def` and every local
+   `cm-variable-2`, so functions, constants and parameters can't be told
+   apart here: they keep the variable color. Reading view is finer. */
+.theme-dark .HyperMD-codeblock :is(.cm-def, .cm-variable, .cm-variable-2) {
+  color: var(--code-normal);
+}
+
+.theme-dark .HyperMD-codeblock .cm-header {
+  color: var(--code-function);
+  font-weight: bold;
+}
+
+.theme-dark .HyperMD-codeblock :is(.cm-string, .cm-string-2) {
+  color: var(--code-string);
+  font-style: italic;
+}
+
+.theme-dark .HyperMD-codeblock :is(.cm-number, .cm-atom) {
+  color: var(--code-value);
+}
+
+.theme-dark .HyperMD-codeblock :is(.cm-type, .cm-variable-3, .cm-qualifier) {
+  color: var(--mistpine-code-type);
+}
+
+.theme-dark .HyperMD-codeblock .cm-attribute {
+  color: var(--mistpine-code-attribute);
+}
+
+.theme-dark .HyperMD-codeblock .cm-builtin {
+  color: var(--mistpine-code-builtin);
+}
+
+.theme-dark .HyperMD-codeblock .cm-property {
+  color: var(--code-property);
+}
+
+.theme-dark .HyperMD-codeblock .cm-meta {
+  color: var(--mistpine-code-macro);
+}
+
+.theme-dark .HyperMD-codeblock .cm-operator {
+  color: var(--code-operator);
+}
+
+.theme-dark .HyperMD-codeblock :is(.cm-punctuation, .cm-bracket) {
+  color: var(--code-punctuation);
+}
+
+.theme-dark .HyperMD-codeblock .cm-tag {
+  color: var(--code-tag);
+}
+
+.theme-dark .HyperMD-codeblock .cm-link {
+  color: var(--mistpine-code-link);
+  text-decoration: underline;
+}
+
+.theme-dark .HyperMD-codeblock .cm-error {
+  color: var(--text-error);
+}

@@ -1,0 +1,5 @@
+node_modules/
+*.tsbuildinfo
+.DS_Store
+# Obsidian writes these when the sample vault is opened directly.
+scripts/render/vault/.obsidian/

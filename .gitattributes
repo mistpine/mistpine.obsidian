@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.png binary
+*.ttf binary
+
+# Generated: review src/theme.css instead.
+theme.css linguist-generated
+assets/** linguist-generated
