@@ -26,7 +26,8 @@ color, callout title and tag clears 4.5:1 on the surface it sits on.
 ## Install
 
 In Obsidian, open **Settings → Appearance → Themes → Manage**, search for
-**mistpine**, then **Install and use**.
+**mistpine**, then **Install and use**. It is listed in the
+[community directory](https://community.obsidian.md/themes/mistpine).
 
 To install by hand, download `theme.css` and `manifest.json` from the
 [latest release](https://github.com/mistpine/mistpine.obsidian/releases/latest)
