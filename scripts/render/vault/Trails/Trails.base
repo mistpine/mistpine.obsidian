@@ -1,0 +1,21 @@
+filters:
+  and:
+    - 'type == "trail"'
+properties:
+  note.distance:
+    displayName: Distance (km)
+  note.elevation:
+    displayName: Climb (m)
+views:
+  - type: table
+    name: All trails
+    order:
+      - file.name
+      - status
+      - distance
+      - elevation
+      - fog
+      - walked
+    sort:
+      - property: distance
+        direction: DESC
