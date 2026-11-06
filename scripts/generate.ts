@@ -31,14 +31,19 @@ function color(key: string): string {
 /** Recomputes the spec's own blends, so `mix` provably matches the spec. */
 function verifyBlends(): void {
   const names: Record<string, string> = { "@terminal.background": color("terminal.background") };
+  let checked = 0;
   for (const [name, token] of Object.entries(spec.ui)) {
-    const m = token.mix?.match(/^mix\((\S+), \$(\w+), (\d+)%\)$/);
-    if (!m) continue;
+    if (!token.derived) continue;
+    const m = token.derived.match(/^mix\((\S+), \$(\w+), (\d+)%\)$/);
+    if (!m) throw new Error(`ui.${name}: unknown blend ${token.derived}`);
     const [, base, key, pct] = m as unknown as [string, string, string, string];
     const got = mix(names[base] ?? color(base.replace(/^\$/, "")), color(key), Number(pct) / 100);
     if (got !== token.hex)
       throw new Error(`mix for ui.${name} gives ${got}, spec says ${token.hex}`);
+    checked++;
   }
+  // The spec has blends; finding none means its format changed under us.
+  if (checked === 0) throw new Error("the spec has no blends: did its format change?");
 }
 
 function expand(template: string): string {

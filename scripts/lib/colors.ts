@@ -14,7 +14,8 @@ export const SPEC_URL =
 export interface Token {
   hex: string;
   ref?: string;
-  mix?: string;
+  /** A blend such as `mix(@terminal.background, $green, 20%)`. */
+  derived?: string;
   italic?: boolean;
   bold?: boolean;
   underline?: boolean;
