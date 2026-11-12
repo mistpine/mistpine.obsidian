@@ -1,0 +1,49 @@
+# Filing through the API or `gh issue create`? Forms only apply on the web:
+# write the body with each field's label below as a `### ` heading, in order.
+name: Style a plugin or feature
+description: A community plugin, core feature or new Obsidian release that mistpine should style.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        mistpine styles Obsidian through its CSS variables, so most core
+        features and well-behaved plugins follow along. This is for the ones
+        that don't. The theme loads no fonts and makes no network requests.
+  - type: input
+    id: target
+    attributes:
+      label: Plugin or feature
+      description: A community plugin's repository URL, or the core feature's name.
+      placeholder: "https://github.com/blacksmithgu/obsidian-dataview, Canvas"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What looks off
+      description: Which parts keep default or clashing colors, and which spec roles you think fit (menus, callouts, diff, search).
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: How it looks with mistpine today. Drag an image here.
+  - type: textarea
+    id: selectors
+    attributes:
+      label: CSS selectors or variables
+      description: From the developer tools (ctrl+shift+i / cmd+opt+i), if you have them.
+      render: css
+  - type: dropdown
+    id: author
+    attributes:
+      label: Who wrote this issue?
+      description: Issues from agents are welcome; say so, so they can be read with that in mind.
+      options:
+        - A person
+        - An AI agent, reviewed by a person
+        - An AI agent, without human review
+    validations:
+      required: true

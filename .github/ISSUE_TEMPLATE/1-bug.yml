@@ -1,0 +1,69 @@
+# Filing through the API or `gh issue create`? Forms only apply on the web:
+# write the body with each field's label below as a `### ` heading, in order.
+name: Wrong or broken colors
+description: Something in the wrong color, unreadable, or left in Obsidian's default colors.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        mistpine.obsidian follows the [mistpine spec](https://github.com/mistpine/mistpine/blob/main/docs/spec.md).
+        A color that differs from the spec is a bug here; a spec color you'd like
+        changed belongs in [mistpine](https://github.com/mistpine/mistpine/issues/new/choose).
+        mistpine is dark only: in light mode Obsidian keeps its default colors.
+  - type: textarea
+    id: what
+    attributes:
+      label: What's wrong
+      description: What you see, where (a callout, code block, Bases view, graph, a plugin's pane), and what you expected.
+    validations:
+      required: true
+  - type: dropdown
+    id: view
+    attributes:
+      label: View
+      description: Code blocks are highlighted differently in each.
+      options:
+        - Reading view
+        - Live Preview
+        - Source mode
+        - Not about a note
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Drag an image here.
+  - type: textarea
+    id: markdown
+    attributes:
+      label: Markdown that shows it
+      description: For problems inside notes, the smallest note that reproduces it.
+      render: markdown
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: Obsidian app and installer versions (Settings → General), the OS, and the mistpine version (Settings → Appearance → Themes).
+      render: text
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I'm on the latest mistpine release.
+          required: true
+        - label: It still happens with CSS snippets turned off.
+        - label: It still happens with community plugins turned off (or the issue is about one).
+  - type: dropdown
+    id: author
+    attributes:
+      label: Who wrote this issue?
+      description: Issues from agents are welcome; say so, so they can be read with that in mind.
+      options:
+        - A person
+        - An AI agent, reviewed by a person
+        - An AI agent, without human review
+    validations:
+      required: true
