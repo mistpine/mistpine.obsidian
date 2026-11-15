@@ -63,6 +63,10 @@ share the variable color; Reading view tells them apart.
 
 Requires Node 24+ and pnpm (`corepack enable`).
 
+The spec loader, color math, banner and pixel checks come from
+[@mistpine/port-kit](https://github.com/mistpine/port-kit), shared by every
+mistpine port.
+
 ```sh
 pnpm install
 pnpm generate  # theme.css from src/theme.css and the mistpine spec
@@ -92,5 +96,4 @@ installs from.
 
 ## License
 
-[MIT](LICENSE). Outfit and JetBrains Mono (in `scripts/fonts`, for the banner) are under the
-SIL Open Font License 1.1.
+[MIT](LICENSE).

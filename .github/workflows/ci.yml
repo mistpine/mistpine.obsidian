@@ -14,15 +14,5 @@ concurrency:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-      - run: corepack enable
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
-      - run: pnpm typecheck
-      # theme.css must match src/theme.css and the current mistpine spec.
-      - run: pnpm check
+    # theme.css must match src/theme.css and the current mistpine spec.
+    uses: mistpine/port-kit/.github/workflows/port.yml@v0.1.0
