@@ -9,10 +9,12 @@
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { hsl, loadSpec, mix, ROOT, rgb, type Spec } from "./lib/colors.ts";
+import { hsl, loadSpec, mix, rgb, type Spec } from "@mistpine/port-kit";
+
+const ROOT = join(import.meta.dirname, "..");
 
 const check = process.argv.includes("--check");
-const { spec, source } = await loadSpec();
+const { spec, source } = await loadSpec(ROOT);
 const manifest = JSON.parse(readFileSync(join(ROOT, "manifest.json"), "utf8")) as {
   name: string;
   version: string;

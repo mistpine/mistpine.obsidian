@@ -15,7 +15,8 @@ import { cpSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { Cdp } from "./lib/cdp.ts";
-import { ROOT } from "./lib/colors.ts";
+
+const ROOT = join(import.meta.dirname, "..");
 
 const binary = process.env.OBSIDIAN;
 if (!binary) throw new Error("set OBSIDIAN to the obsidian binary (see the header of this file)");
